@@ -7,16 +7,14 @@ namespace ProcedualObjectGenerator.Scripts
 	{
 		[SerializeField]
 		private GameObject _createObj;
-		[SerializeField]
-		private int _quantity;
-		[SerializeField]
-		private float _radius;
+		[SerializeField] protected int Quantity = 30;
+		[SerializeField] protected float Radius = 10;
 
 		// Use this for initialization
 		void Awake()
 		{
 			CircleObjectInstantiater co = GetComponent<CircleObjectInstantiater>();
-			co.InstantiateObject(_createObj,_radius,_quantity);
+			co.InstantiateObject(_createObj,Radius,Quantity);
 		}
 	
 		// Update is called once per frame
