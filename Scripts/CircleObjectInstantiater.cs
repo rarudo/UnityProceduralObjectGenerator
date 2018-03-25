@@ -5,33 +5,19 @@ namespace ProcedualObjectGenerator.Scripts
 {
 	public class CircleObjectInstantiater : MonoBehaviour
 	{
-		[SerializeField]
-		private GameObject _object; 
-		[SerializeField]
-		private float _radius;
-		[SerializeField]
-		private int _quantity;
-		//回転する量
-		private float _rotateDiff;
 		private GameObject[] _createdObjects;
 
-		// Use this for initialization
-		void Awake()
+		public void InstantiateObject(GameObject createObj,float radius, int quantity)
 		{
-			_rotateDiff = 360 / _quantity;
-			InstantiateObject();
-		}
-
-		void InstantiateObject()
-		{
-			_createdObjects = new GameObject[_quantity];
-			for (int i = 0; i < _quantity; i++)
+			float rotateDiff = 360 / quantity;
+			_createdObjects = new GameObject[quantity];
+			for (int i = 0; i < quantity; i++)
 			{
-				var obj = Instantiate(_object);
+				var obj = Instantiate(createObj);
 				obj.transform.position = transform.position;
 				obj.transform.rotation = transform.rotation;
-				obj.transform.position += obj.transform.right * _radius;
-				transform.Rotate(0,_rotateDiff,0);
+				obj.transform.position += obj.transform.right * radius;
+				transform.Rotate(0,rotateDiff,0);
 				obj.transform.Rotate(-90,0,0);
 				_createdObjects[i] = obj;
 			}
