@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace ProcedualObjectGenerator.Scripts
 {
@@ -12,9 +13,10 @@ namespace ProcedualObjectGenerator.Scripts
 		private int _quantity;
 		//回転する量
 		private float _rotateDiff;
+		private GameObject[] _createdObjects;
 
 		// Use this for initialization
-		void Start ()
+		void Awake()
 		{
 			_rotateDiff = 360 / _quantity;
 			InstantiateObject();
@@ -22,7 +24,7 @@ namespace ProcedualObjectGenerator.Scripts
 
 		void InstantiateObject()
 		{
-			GameObject[] objects = new GameObject[_quantity];
+			_createdObjects = new GameObject[_quantity];
 			for (int i = 0; i < _quantity; i++)
 			{
 				var obj = Instantiate(_object);
@@ -31,13 +33,18 @@ namespace ProcedualObjectGenerator.Scripts
 				obj.transform.position += obj.transform.right * _radius;
 				transform.Rotate(0,_rotateDiff,0);
 				obj.transform.Rotate(-90,0,0);
-				objects[i] = obj;
+				_createdObjects[i] = obj;
 			}
 
-			foreach (var obj in objects)
+			foreach (var obj in _createdObjects)
 			{
 				obj.transform.parent = transform;
 			}
+		}
+
+		private GameObject[] GetCreateObjects()
+		{
+			return _createdObjects;
 		}
 	
 		// Update is called once per frame
