@@ -9,7 +9,7 @@ namespace ProcedualObjectGenerator.Scripts
 
 		public void InstantiateObject(GameObject createObj,float radius, int quantity)
 		{
-			float rotateDiff = 360 / quantity;
+			float rotateDiff = 360f / quantity;
 			_createdObjects = new GameObject[quantity];
 			for (int i = 0; i < quantity; i++)
 			{
@@ -18,7 +18,7 @@ namespace ProcedualObjectGenerator.Scripts
 				obj.transform.rotation = transform.rotation;
 				obj.transform.position += obj.transform.right * radius;
 				transform.Rotate(0,rotateDiff,0);
-				obj.transform.Rotate(-90,0,0);
+				obj.transform.Rotate(90,0,0);
 				_createdObjects[i] = obj;
 			}
 
