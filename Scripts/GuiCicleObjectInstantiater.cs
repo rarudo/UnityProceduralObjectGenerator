@@ -13,7 +13,7 @@ namespace ProcedualObjectGenerator.Scripts
 		private float _radius;
 
 		// Use this for initialization
-		void Start ()
+		void Awake()
 		{
 			CircleObjectInstantiater co = GetComponent<CircleObjectInstantiater>();
 			co.InstantiateObject(_createObj,_radius,_quantity);

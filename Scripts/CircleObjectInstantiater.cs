@@ -28,7 +28,7 @@ namespace ProcedualObjectGenerator.Scripts
 			}
 		}
 
-		private GameObject[] GetCreateObjects()
+		public GameObject[] GetCreateObjects()
 		{
 			return _createdObjects;
 		}
