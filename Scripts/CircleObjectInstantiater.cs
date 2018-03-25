@@ -1,46 +1,47 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CircleObjectInstantiater : MonoBehaviour
+namespace ProcedualObjectGenerator.Scripts
 {
-	[SerializeField]
-	private GameObject _object; 
-	[SerializeField]
-	private float _radius;
-	[SerializeField]
-	private int _quantity;
-	//回転する量
-	private float _rotateDiff;
-
-	// Use this for initialization
-	void Start ()
+	public class CircleObjectInstantiater : MonoBehaviour
 	{
-		_rotateDiff = 360 / _quantity;
-		InstantiateObject();
-	}
+		[SerializeField]
+		private GameObject _object; 
+		[SerializeField]
+		private float _radius;
+		[SerializeField]
+		private int _quantity;
+		//回転する量
+		private float _rotateDiff;
 
-	void InstantiateObject()
-	{
-		GameObject[] objects = new GameObject[_quantity];
-		for (int i = 0; i < _quantity; i++)
+		// Use this for initialization
+		void Start ()
 		{
-			var obj = Instantiate(_object);
-			obj.transform.position = transform.position;
-			obj.transform.rotation = transform.rotation;
-			obj.transform.position += obj.transform.right * _radius;
-			transform.Rotate(0,_rotateDiff,0);
-			obj.transform.Rotate(-90,0,0);
-			objects[i] = obj;
+			_rotateDiff = 360 / _quantity;
+			InstantiateObject();
 		}
 
-		foreach (var obj in objects)
+		void InstantiateObject()
 		{
-			obj.transform.parent = transform;
+			GameObject[] objects = new GameObject[_quantity];
+			for (int i = 0; i < _quantity; i++)
+			{
+				var obj = Instantiate(_object);
+				obj.transform.position = transform.position;
+				obj.transform.rotation = transform.rotation;
+				obj.transform.position += obj.transform.right * _radius;
+				transform.Rotate(0,_rotateDiff,0);
+				obj.transform.Rotate(-90,0,0);
+				objects[i] = obj;
+			}
+
+			foreach (var obj in objects)
+			{
+				obj.transform.parent = transform;
+			}
 		}
-	}
 	
-	// Update is called once per frame
-	void Update () {
+		// Update is called once per frame
+		void Update () {
+		}
 	}
 }
